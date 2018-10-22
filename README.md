@@ -1,4 +1,4 @@
-PROjECT: FLOWER POT
+PROJECT: FLOWER POT
 ===================
 Poject description
 ------------------
