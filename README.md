@@ -1,6 +1,6 @@
 PROJECT: FLOWER POT
 ===================
-Poject description
+Project description
 ------------------
 The main idea of this project has ecological, economic and educational character.
 It is the code we are developing for an automatic flower pot. The FP is based
