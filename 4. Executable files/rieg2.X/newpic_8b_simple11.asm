@@ -1,0 +1,5 @@
+list p=16f877
+    porta EQU 0X01
+    PORTB EQU 0X07
+    PORTC EQU 0X13
+    PORTD EQU 0X17
