@@ -1,0 +1,272 @@
+MPASM 5.81              NEWPIC_8B_SIMPLE.ASM   10-22-2018  18:02:00         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ SENSOR DE temperatura ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00002 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ MASISOS TEAM ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00003 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬  embedded ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00004 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ Universidad politecnica de yucatana ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00005 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ DEFINICION DE REGISTROS UTILIZADOS ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+  00000002            00006 pcl     equ     02h
+  00000003            00007 status  equ     03
+  00000005            00008 ptoa    equ     05
+  00000006            00009 ptob    equ     06
+  00000007            00010 ptoc    equ     07
+  00000008            00011 ptod    equ     08
+  00000009            00012 ptoe    equ     09
+  0000000A            00013 pclath  equ     0ah
+  0000000B            00014 intcon  equ     0bh
+  0000000C            00015 pir1    equ     0ch
+  00000018            00016 rcsta   equ     18h
+  00000019            00017 txreg   equ     19h
+  0000001A            00018 rcreg   equ     1ah
+  0000001E            00019 adresh  equ     1eh
+  0000001F            00020 adcon0  equ     1fh
+  00000085            00021 trisa   equ     85h
+  00000086            00022 trisb   equ     86h
+  00000087            00023 trisc   equ     87h
+  00000088            00024 trisd   equ     88h
+  00000089            00025 trise   equ     89h
+  00000098            00026 txsta   equ     98h
+  00000099            00027 spbrg   equ     99h
+  0000009E            00028 adresl  equ     9eh
+  0000009F            00029 adcon1  equ     9fh
+                      00030 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ Definicion de bits utilizados ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+  00000005            00031 rp0     equ     5
+  00000006            00032 rp1     equ     6
+  00000007            00033 irp     equ     7
+  00000002            00034 z       equ     2
+  00000000            00035 c       equ     0
+  00000004            00036 txif    equ     4
+  00000002            00037 go      equ     2
+                      00038 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ Variables del usuario  ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+  00000030            00039 loops   equ     30h
+  00000031            00040 loops2  equ     31h
+  00000036            00041 loops3  equ     36h
+  00000032            00042 dig0    equ     32h
+  00000033            00043 dig1    equ     33h
+                      00044 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ Configuracion para el simulador Proteus ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+Warning[205]: Found directive in column 1. (list)
+                      00045 list p=16f877
+  00000FCF            00046 _CP_ALL                         EQU     H'0FCF'
+  00001FDF            00047 _CP_HALF                        EQU     H'1FDF'
+  00002FEF            00048 _CP_UPPER_256                   EQU     H'2FEF'
+  00003FFF            00049 _CP_OFF                         EQU     H'3FFF'
+  000037FF            00050 _DEBUG_ON                       EQU     H'37FF'
+  00003FFF            00051 _DEBUG_OFF                      EQU     H'3FFF'
+  00003FFF            00052 _WRT_ENABLE_ON                  EQU     H'3FFF'
+MPASM 5.81              NEWPIC_8B_SIMPLE.ASM   10-22-2018  18:02:00         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  00003DFF            00053 _WRT_ENABLE_OFF                 EQU     H'3DFF'
+  00003EFF            00054 _CPD_ON                         EQU     H'3EFF'
+  00003FFF            00055 _CPD_OFF                        EQU     H'3FFF'
+  00003FFF            00056 _LVP_ON                         EQU     H'3FFF' 
+  00003F7F            00057 _LVP_OFF                        EQU     H'3F7F' 
+  00003FFF            00058 _BODEN_ON                       EQU     H'3FFF'
+  00003FBF            00059 _BODEN_OFF                      EQU     H'3FBF'
+  00003FFF            00060 _PWRTE_OFF                      EQU     H'3FFF'
+  00003FF7            00061 _PWRTE_ON                       EQU     H'3FF7'
+  00003FFF            00062 _WDT_ON                         EQU     H'3FFF'
+  00003FFB            00063 _WDT_OFF                        EQU     H'3FFB'
+  00003FFC            00064 _LP_OSC                         EQU     H'3FFC'
+  00003FFD            00065 _XT_OSC                         EQU     H'3FFD'
+  00003FFE            00066 _HS_OSC                         EQU     H'3FFE'
+  00003FFF            00067 _RC_OSC                         EQU     H'3FFF'
+                      00068 
+Warning[205]: Found directive in column 1. (__CONFIG)
+2007   3FF1           00069 __CONFIG _CP_OFF & _WDT_OFF & _XT_OSC & _PWRTE_ON 
+                      00070 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬  posicion ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00071           org           00                                     ;inicia desde la posicion 00
+0000   2???           00072           goto          inicio                                 ;ir a inicio
+                      00073 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ retardo ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+0001   0000           00074 retarms   nop                                                  ;nada
+0002   00B0           00075           movwf         loops                                  ;retardo de milisegundos cargado desde af
+                            uera
+0003   306E           00076 otro2     movlw         d'110'                                 ;carga a w con 110
+0004   00B1           00077           movwf         loops2                                 ;mueva w a posicion loops2
+0005   0000           00078 otro      nop                                                  ;nada
+0006   0000           00079           nop                                                  ;nada
+0007   0000           00080           nop                                                  ;nada
+0008   0000           00081           nop                                                  ;nada
+0009   0000           00082           nop                                                  ;nada
+000A   0000           00083           nop                                                  ;nada
+000B   0BB1           00084           decfsz        loops2,1                               ;decrementa  loops2 y guarda en f
+000C   2???           00085           goto          otro                                   ;ir a otro
+000D   0BB0           00086           decfsz        loops,1                                ;decrementa  loops y guarda en f
+000E   2???           00087           goto          otro2                                  ;ir a otro2
+Warning[203]: Found opcode in column 1. (return)
+000F   0008           00088 return                                                         ;retorna
+                      00089 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ convertir A/D ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+0010   0000           00090 conver    nop                                                  ;nada
+0011   01B6           00091           clrf          36h                                    ;limpiar posicion 36  
+0012   3005           00092           movlw         d'5'                                   ;carge a w 5
+0013   2???           00093           call          retarms                                ;llamar retardo
+0014   151F           00094           bsf           adcon0,2                               ;empezar a convertir A/D        
+0015   0000           00095           nop                                                  ;nada 
+0016   0000           00096           nop                                                  ;nada
+0017   0000           00097 pereira   nop                                                  ;nada
+0018   191F           00098           btfsc         adcon0,go                              ;pregunta si ya convirtio
+0019   2???           00099           goto          pereira                                ;ir a pereira
+001A   081E           00100           movf          adresh,0                               ;pasa adresh a w         
+001B   00B6           00101           movwf         36h                                    ;pasar w a 36h
+001C   2???           00102           call          motor                                  ;llamar a rurina motor 
+MPASM 5.81              NEWPIC_8B_SIMPLE.ASM   10-22-2018  18:02:00         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (return)
+001D   0008           00103 return                                                         ;retorna
+                      00104 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ encender motor ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+001E   0000           00105 motor     nop                                                  ;nada
+001F   301E           00106           movlw         d'30'                                  ;carga w con 31
+0020   0236           00107           subwf          36h,w                                 ;compara 31 con lo convertido
+0021   1C03           00108           btfss         status,c                               ;pregunta si esta en 0
+0022   1408           00109           bsf           ptod,0                                 ;encienda el motor
+0023   301F           00110           movlw         d'31'                                  ;carga w con 31
+0024   0236           00111           subwf          36h,w 
+0025   1803           00112           btfsc         status,c  
+0026   1008           00113           bcf           ptod,0
+Warning[203]: Found opcode in column 1. (return)
+0027   0008           00114 return                                                         ;retorna
+                      00115                                                   ;retorna
+                      00116 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ configuracion de puertos ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+0028   0000           00117 inicio   nop                                                   ;nada
+0029   0183           00118          clrf           status                                 ;limpia status
+002A   1303           00119          bcf            status,6                               ;pone en 0  status,6
+002B   1683           00120          bsf            status,5                               ;pone en 1  status,5  banco1
+002C   30FF           00121          movlw          b'11111111'                            ;carga a w con configuracion puerto a
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002D   0085           00122          movwf          trisa                                  ;mueva w a trisa
+002E   3000           00123          movlw          b'00000000'                            ;carga a w con configuracion puerto b
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002F   0086           00124          movwf          trisb                                  ;mueva w a trisb
+0030   30FC           00125          movlw          b'11111100'                            ;carga a w con configuracion puerto c
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0031   0087           00126          movwf          trisc                                  ;mueva w a trisc
+0032   30F8           00127          movlw          b'11111000'                            ;carga a w con configuracion puerto d
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0033   0088           00128          movwf          trisd                                  ;mueva w a trisd
+0034   30EF           00129          movlw          b'11101111'                            ;carga a w con configuracion puerto e    
+                                               
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0035   0089           00130          movwf          trise                                  ;mueva w a trise
+0036   300D           00131          movlw          b'00001101'                            ;escoger tension externa  
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0037   009F           00132          movwf          adcon1                                 ;mueva w a adcon1
+0038   1283           00133          bcf            status,5                               ;pone en 0 status,5  banko0              
+                                    
+                      00134 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ inicio del programa ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                                   
+0039   0186           00135          clrf           ptob                                   ;limpiar puerto B
+003A   3000           00136          movlw          d'0'                                   ;cargar w con 0
+003B   0086           00137          movwf          ptob                                   ;pasar w a puerto B                      
+                                 
+003C   0187           00138 ciclo2   clrf           ptoc                                   ;limpiar puerto C
+003D   3081           00139          movlw          b'10000001'                            ;carga w con configuracion activar conver
+                            cion 
+003E   009F           00140          movwf          adcon0                                 ;escoger reloj  Fosc / 32
+003F   2???           00141          call           conver                                 ;llamar a conver
+0040   2???           00142          goto           ciclo2                                 ;ir a ciclo2          
+MPASM 5.81              NEWPIC_8B_SIMPLE.ASM   10-22-2018  18:02:00         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (end)
+3FF1                  00143 end                                                            ;fin
+MPASM 5.81              NEWPIC_8B_SIMPLE.ASM   10-22-2018  18:02:00         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00000FCF
+_CP_HALF                          00001FDF
+_CP_OFF                           00003FFF
+_CP_UPPER_256                     00002FEF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_HS_OSC                           00003FFE
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_ENABLE_OFF                   00003DFF
+_WRT_ENABLE_ON                    00003FFF
+_XT_OSC                           00003FFD
+__16F877A                         00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+adcon0                            0000001F
+adcon1                            0000009F
+adresh                            0000001E
+adresl                            0000009E
+c                                 00000000
+ciclo2                            0000003C
+conver                            00000010
+dig0                              00000032
+dig1                              00000033
+go                                00000002
+inicio                            00000028
+intcon                            0000000B
+irp                               00000007
+loops                             00000030
+loops2                            00000031
+loops3                            00000036
+motor                             0000001E
+otro                              00000005
+otro2                             00000003
+pcl                               00000002
+pclath                            0000000A
+pereira                           00000017
+pir1                              0000000C
+ptoa                              00000005
+ptob                              00000006
+ptoc                              00000007
+ptod                              00000008
+ptoe                              00000009
+MPASM 5.81              NEWPIC_8B_SIMPLE.ASM   10-22-2018  18:02:00         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+rcreg                             0000001A
+rcsta                             00000018
+retarms                           00000001
+rp0                               00000005
+rp1                               00000006
+spbrg                             00000099
+status                            00000003
+trisa                             00000085
+trisb                             00000086
+trisc                             00000087
+trisd                             00000088
+trise                             00000089
+txif                              00000004
+txreg                             00000019
+txsta                             00000098
+z                                 00000002
+
+Errors   :     0
+Warnings :     6 reported,     0 suppressed
+Messages :     6 reported,     0 suppressed
+
+

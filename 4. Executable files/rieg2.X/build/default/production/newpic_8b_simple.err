@@ -1,0 +1,12 @@
+Warning[205] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 45 : Found directive in column 1. (list)
+Warning[205] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 69 : Found directive in column 1. (__CONFIG)
+Warning[203] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 88 : Found opcode in column 1. (return)
+Warning[203] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 103 : Found opcode in column 1. (return)
+Warning[203] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 114 : Found opcode in column 1. (return)
+Message[302] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 122 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 124 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 126 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 128 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 130 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 132 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] C:\USERS\USUARIO\DESKTOP\PRUEBA\RIEG2.X\NEWPIC_8B_SIMPLE.ASM 143 : Found directive in column 1. (end)
