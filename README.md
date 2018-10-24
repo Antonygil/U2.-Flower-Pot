@@ -15,3 +15,7 @@ Practically, the conventional watering systems are focused on agriculture and fa
 and their costs are expensive. Our system offers a unique autonomous watering pot 
 (the item includes the pot) which works with 5V from the household power outlet. it is
 one of the more versions with different sizes and styles.
+
+For its use:
+--------------
+You have to download MPLABxIDE software, to own a PIC16F877A and a programmer board K150,K147 or K140.
