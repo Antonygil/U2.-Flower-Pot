@@ -1,0 +1,199 @@
+MPASM 5.77                     FINALCODE.ASM   10-24-2018  6:22:58         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ SELFWATERING POT SYSTEM PROGRAM ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                            ¬
+                      00002 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬         GREE TECH & HOME    ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00003 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬    UNIVERSIDAD POLITECNICA DE YUCATAN ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00004 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ EMBEDDED 3A ANGEL ESCALANTE,ANTONIO GIL,JULIO ALPUCHE, CARLOS RANGEL ¬¬¬¬¬¬¬¬
+                            ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00005 
+                      00006 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬DEFINICIÓN DEL PIC CON EL CUAL SE TRABAJARÁ Y AÑADIR LA OPCION DE HEXADECIMAL¬¬¬¬¬¬¬¬
+                            ¬¬¬¬¬¬¬¬¬¬              
+                      00007                 LIST P=16F877A
+                      00008                 RADIX   HEX
+                      00009 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ DEFINICION DE REGISTROS UTILIZADOS ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+  00000002            00010 PCL                 EQU     02h             ;PUERTO CONVERSOR ANALOGICO
+  00000003            00011 STATUS              EQU     03h             ;BIT DE ESTADO
+  00000005            00012 PA                  EQU     05h             ;PUERTO A
+  00000006            00013 PB                  EQU     06h             ;PUERTO B
+  00000007            00014 PC                  EQU     07h             ;PUERTO C
+  00000008            00015 PD                  EQU     08h             ;PUERTO D
+  00000009            00016 PE                  EQU     09h             ;PUERTO E
+  0000000A            00017 PCLATH              EQU     0Ah             ;CONTADOR DEL PROGRAMA 
+  0000000B            00018 INTCON              EQU     0Bh             ;INTERRUPCION DEL PROGRAMA
+  0000000C            00019 PIR1                EQU     0Ch             ;INTERRUPCION DEL PROGRAMA
+  00000018            00020 RCSTA               EQU     18h             ;SISTEMA DE CANCELACION DE BITS
+  00000019            00021 TXREG               EQU     19h             ;BITS DE COMUNICACION SERIAL
+  0000001A            00022 RCREG               EQU     1ah             ;SALIDA DE PIN SCFR
+  0000001E            00023 ADRESH              EQU     1Eh             ;BITS MAS SIGNIFICATIVOS CONVERSION ADC
+  0000001F            00024 ADCON0              EQU     1Fh             ;CONTADORES ANALOGICOS.
+  00000085            00025 TRISA               EQU     85h             ;PA BANCO 1
+  00000086            00026 TRISB               EQU     86h             ;PB BANCO 1
+  00000087            00027 TRISC               EQU     87h             ;PC BANCO 1
+  00000088            00028 TRISD               EQU     88h             ;PD BANCO 1
+  00000089            00029 TRISE               EQU     89h             ;PE BANCO 1
+  00000098            00030 TXSTA               EQU     98h             ;BITS DE COMUNICACION SERIAL
+  00000099            00031 SPBRG               EQU     99h             ;BITS DE COMUNICACION SERIAL
+  0000009E            00032 ADRESL              EQU     9Eh             ;CONTADOR ANALOGICO
+  0000009F            00033 ADCON1              EQU     9Fh             ;BITS MENOS SIGNIFICATIVOS CONVERSION ADC
+                      00034                     
+                      00035 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ DEFINICION DE BITS UTILIZADOS¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+  00000002            00036 Z                   EQU     2               ;BIT 2
+  00000000            00037 C                   EQU     0               ;BIT 0
+                      00038                     
+                      00039 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ VARIABLES DE USUARIO ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+  00000030            00040 LOOPS               EQU     30h
+  00000031            00041 LOOPS2              EQU     31h
+  00000032            00042 TEST                EQU     32h
+                      00043                     
+                      00044 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬  CONFIGURACION DEL SISTEMA ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                            ¬¬¬¬¬¬
+                      00045                     ORG     0x00            ;DIRECCION DE INICIO 00                      
+0000   2???           00046                     GOTO    INICIO          ;INICIO DEL PROGRAMA                          
+                      00047                     ORG     0x05            ;DIRECCION DEL RESET
+                      00048                     
+                      00049 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ FUNCION DE RETARDO (DELAY) ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+MPASM 5.77                     FINALCODE.ASM   10-24-2018  6:22:58         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                            ¬¬¬¬¬¬¬¬
+0005   30FF           00050 RETARDO             MOVLW   0xFF            ;RETARDO DE MILISEGUNDOS
+0006   00B0           00051                     MOVWF   LOOPS           ;MOVER W A REGISTRO
+0007   30FF           00052                     MOVlW   0xFF            ;CARGAR W CON UN NUMERO
+0008   00B1           00053                     MOVWF   LOOPS2
+0009   0B30           00054 DEMORA              DECFSZ  LOOPS,0         ;DECREMENTA EN 1 SE SALTA INTRUCCION SI ES 0
+000A   2???           00055                     GOTO    DEMORA          ;IR A
+000B   0B31           00056                     DECFSZ  LOOPS2,0
+000C   2???           00057                     GOTO    DEMORA
+000D   0008           00058                     RETURN
+                      00059 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ convertir A/D ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+000E   0000           00060 CONVER              NOP                     ;NADA SOLO RETARDA 20 MICROSEGUNDOS
+000F   0000           00061                     NOP                         
+0010   01B6           00062                     CLRF    36h             ;LIMPIAR POSICION 36 
+0011   2???           00063                     CALL    RETARDO         ;LLAMAR A FUNCION
+0012   151F           00064                     BSF     ADCON0,2        ;EMPEZAR A CONVERTIR AD       
+0013   0000           00065                     NOP                                                   
+0014   0000           00066                     NOP                                                  
+0015   191F           00067 CHECK               BTFSC   ADCON0,2        ;TESTEAR SI UA CONVIRTIÓ
+0016   2???           00068                     GOTO    CHECK           ;IR A CHECK
+0017   081E           00069                     MOVF    ADRESH,w        ;PASA ADRESH A W    
+0018   00B6           00070                     MOVWF   36h             ;PASAR W A 36
+0019   101F           00071                     BCF     ADCON0,0        ;BIT 0, CLEAR, REGISTRO ADCON
+001A   2???           00072                     CALL    BOMBA           ;LLAMAR RUTINA DE MOTOR 
+001B   0008           00073                     RETURN                  ;RETORNA A DONDE LLAMARON
+                      00074                     
+                      00075 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ encender motor ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+001C   0000           00076 BOMBA               NOP                     
+001D   0000           00077                     NOP
+001E   0000           00078                     NOP
+001F   0000           00079                     NOP
+0020   3025           00080                     MOVLW   d'37'           ;CARGA W CON 37 (GRADOS)
+0021   0236           00081                     SUBWF   36h,w        ;COMPARA CON LO CONVERTIDO GUARDA EN W
+0022   00B2           00082                     MOVWF   TEST            ;MUEVE W A REGISTRO PARA TESTEO
+0023   1C32           00083                     BTFSS   TEST,C          ;PREGUNTA SI ESTA EN 0
+0024   1408           00084                     BSF     PD,0            ;ENCIENDE SALIDA RD0
+0025   1007           00085                     BCF     PC,0            ;APAGA SALIDA RC0
+0026   0000           00086                     NOP
+0027   0000           00087                     NOP
+0028   0008           00088                     RETURN                  ;RETURNA
+                      00089                                                 
+                      00090 
+                      00091 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ CONFIGURACION DE PUERTOS PARA ENTRADAS Y/O SALIDAS DEL PIC ¬¬¬¬¬¬¬¬
+                            ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                      00092                                 ;1 = INPUT    0 = OUTPUT CADA UNO REPRESENTA UNA PATITA DE CADA PUERTO
+0029   0000           00093 INICIO              NOP                    
+002A   0183           00094                     CLRF    STATUS          
+002B   1303           00095                     BCF     STATUS,6                               
+002C   1683           00096                     BSF     STATUS,5                           
+002D   30FF           00097                     MOVLW   b'11111111'                            
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002E   0085           00098                     MOVWF   TRISA                                  
+002F   3000           00099                     MOVLW   b'00000000'                            
+MPASM 5.77                     FINALCODE.ASM   10-24-2018  6:22:58         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0030   0086           00100                     MOVWF   TRISB                                 
+0031   30FF           00101                     MOVLW   b'11111111'                            
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0032   0087           00102                     MOVWF   TRISC                                 
+0033   30FF           00103                     MOVLW   b'11111111'                            
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0034   0088           00104                     MOVWF   TRISD                                  
+0035   30EF           00105                     MOVLW   b'11101111'                                                 
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0036   0089           00106                     MOVWF   TRISE                                  
+0037   30C7           00107                     MOVLW   b'11000111'                        
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0038   009F           00108                     MOVWF   ADCON1                                     
+0039   1283           00109                     BCF     STATUS,5                                            
+                      00110 ;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ inicio del programa ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+                                   
+003A   0186           00111                     CLRF    PB               ;LIMPIAR PUERTO B
+003B   3000           00112                     MOVLW   d'0'             ;CARGAR W CON 0
+003C   0086           00113                     MOVWF   PB               ;PASAR W A PUERTO B                       
+003D   0187           00114 CICLO               CLRF    PC               ;LIMPIAR PUERTO 0
+003E   3081           00115                     MOVLW   b'10000001'      ;CARGAR W CON CONFIGURACION DE ACTIVAR CONVERSION 
+003F   009F           00116                     MOVWF   ADCON0           ;CARGAR CONFIGURACION EN ADCON 
+0040   2???           00117                     CALL    CONVER           ;LLAMAR RUTINA DE CONVERSION
+0041   2???           00118                     GOTO    CICLO            ;IR A CICLO (BUCLE)         
+                      00119                END                           ;FIN DEL PROGRAMA
+MPASM 5.77                     FINALCODE.ASM   10-24-2018  6:22:58         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADRESH                            0000001E
+ADRESL                            0000009E
+BOMBA                             0000001C
+C                                 00000000
+CHECK                             00000015
+CICLO                             0000003D
+CONVER                            0000000E
+DEMORA                            00000009
+INICIO                            00000029
+INTCON                            0000000B
+LOOPS                             00000030
+LOOPS2                            00000031
+PA                                00000005
+PB                                00000006
+PC                                00000007
+PCL                               00000002
+PCLATH                            0000000A
+PD                                00000008
+PE                                00000009
+PIR1                              0000000C
+RCREG                             0000001A
+RCSTA                             00000018
+RETARDO                           00000005
+SPBRG                             00000099
+STATUS                            00000003
+TEST                              00000032
+TRISA                             00000085
+TRISB                             00000086
+TRISC                             00000087
+TRISD                             00000088
+TRISE                             00000089
+TXREG                             00000019
+TXSTA                             00000098
+Z                                 00000002
+__16F877A                         00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     6 reported,     0 suppressed
+
+
