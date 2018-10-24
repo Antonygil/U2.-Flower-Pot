@@ -10,6 +10,7 @@ The way of coding this microcontroller PIC16F877A is by Assembly language follow
 sintaxys and rules of coding.
 
 How different is our project from the others?
+---------------------------------------------
 Practically, the conventional watering systems are focused on agriculture and farmers
 and their costs are expensive. Our system offers a unique autonomous watering pot 
 (the item includes the pot) which works with 5V from the household power outlet. it is
