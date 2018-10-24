@@ -78,7 +78,7 @@ BOMBA		    NOP
 		    NOP
 		    NOP
 		    MOVLW   d'37'           ;CARGA W CON 37 (GRADOS)
-		    SUBWF   36h,w        ;COMPARA CON LO CONVERTIDO GUARDA EN W
+		    SUBWF   36h,w           ;COMPARA CON LO CONVERTIDO GUARDA EN W
 		    MOVWF   TEST	    ;MUEVE W A REGISTRO PARA TESTEO
 		    BTFSS   TEST,C          ;PREGUNTA SI ESTA EN 0
 		    BSF     PD,0            ;ENCIENDE SALIDA RD0
