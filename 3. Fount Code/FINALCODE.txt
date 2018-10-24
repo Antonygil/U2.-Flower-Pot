@@ -1,12 +1,12 @@
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ SELFWATERING POT SYSTEM PROGRAM ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬	 GREE TECH & HOME    ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬	 UNIVERSIDAD POLITECNICA DE YUCATAN ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ EMBEDDED 3A ANGEL ESCALANTE,ANTONIO GIL,JULIO ALPUCHE, CARLOS RANGEL ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ SELFWATERING POT SYSTEM PROGRAM Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬	 GREE TECH & HOME    Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬	 UNIVERSIDAD POLITECNICA DE YUCATAN Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ EMBEDDED 3A ANGEL ESCALANTE,ANTONIO GIL,JULIO ALPUCHE, CARLOS RANGEL Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬DEFINICIÓN DEL PIC CON EL CUAL SE TRABAJARÁ Y AÑADIR LA OPCION DE HEXADECIMAL¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬		
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬DEFINICIÃ“N DEL PIC CON EL CUAL SE TRABAJARÃ Y AÃ‘ADIR LA OPCION DE HEXADECIMALÂ¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬		
 		LIST P=16F877A
 		RADIX	HEX
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ DEFINICION DE REGISTROS UTILIZADOS ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ DEFINICION DE REGISTROS UTILIZADOS Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 PCL		    EQU	    02h		    ;PUERTO CONVERSOR ANALOGICO
 STATUS		    EQU	    03h		    ;BIT DE ESTADO
 PA		    EQU	    05h		    ;PUERTO A
@@ -32,21 +32,21 @@ SPBRG		    EQU	    99h		    ;BITS DE COMUNICACION SERIAL
 ADRESL		    EQU	    9Eh		    ;CONTADOR ANALOGICO
 ADCON1		    EQU	    9Fh		    ;BITS MENOS SIGNIFICATIVOS CONVERSION ADC
 		    
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ DEFINICION DE BITS UTILIZADOS¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ DEFINICION DE BITS UTILIZADOSÂ¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 Z		    EQU	    2		    ;BIT 2
 C		    EQU	    0		    ;BIT 0
 		    
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ VARIABLES DE USUARIO ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ VARIABLES DE USUARIO Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 LOOPS		    EQU	    30h
 LOOPS2		    EQU	    31h
 TEST		    EQU	    32h
 		    
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬  CONFIGURACION DEL SISTEMA ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬  CONFIGURACION DEL SISTEMA Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 		    ORG     0x00	    ;DIRECCION DE INICIO 00                      
 		    GOTO    INICIO	    ;INICIO DEL PROGRAMA                          
 		    ORG	    0x05	    ;DIRECCION DEL RESET
 		    
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ FUNCION DE RETARDO (DELAY) ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ FUNCION DE RETARDO (DELAY) Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 RETARDO		    MOVLW   0xFF	    ;RETARDO DE MILISEGUNDOS
 		    MOVWF   LOOPS	    ;MOVER W A REGISTRO
 		    MOVlW   0xFF	    ;CARGAR W CON UN NUMERO
@@ -56,7 +56,7 @@ DEMORA		    DECFSZ  LOOPS,0	    ;DECREMENTA EN 1 SE SALTA INTRUCCION SI ES 0
 		    DECFSZ  LOOPS2,0
 		    GOTO    DEMORA
 		    RETURN
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ convertir A/D ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ convertir A/D Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 CONVER		    NOP                     ;NADA SOLO RETARDA 20 MICROSEGUNDOS
 		    NOP				
 		    CLRF    36h             ;LIMPIAR POSICION 36 
@@ -64,7 +64,7 @@ CONVER		    NOP                     ;NADA SOLO RETARDA 20 MICROSEGUNDOS
 		    BSF	    ADCON0,2 	    ;EMPEZAR A CONVERTIR AD       
 		    NOP                                                   
 		    NOP                                                  
-CHECK		    BTFSC   ADCON0,2	    ;TESTEAR SI UA CONVIRTIÓ
+CHECK		    BTFSC   ADCON0,2	    ;TESTEAR SI UA CONVIRTIÃ“
 		    GOTO    CHECK           ;IR A CHECK
 		    MOVF    ADRESH,w        ;PASA ADRESH A W	
 		    MOVWF   36h             ;PASAR W A 36
@@ -72,13 +72,13 @@ CHECK		    BTFSC   ADCON0,2	    ;TESTEAR SI UA CONVIRTIÓ
 		    CALL    BOMBA           ;LLAMAR RUTINA DE MOTOR 
 		    RETURN	            ;RETORNA A DONDE LLAMARON
 		    
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ encender motor ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ encender motor Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 BOMBA		    NOP                     
 		    NOP
 		    NOP
 		    NOP
 		    MOVLW   d'37'           ;CARGA W CON 37 (GRADOS)
-		    SUBWF   36h,w,0         ;COMPARA CON LO CONVERTIDO GUARDA EN W
+		    SUBWF   36h,w        ;COMPARA CON LO CONVERTIDO GUARDA EN W
 		    MOVWF   TEST	    ;MUEVE W A REGISTRO PARA TESTEO
 		    BTFSS   TEST,C          ;PREGUNTA SI ESTA EN 0
 		    BSF     PD,0            ;ENCIENDE SALIDA RD0
@@ -88,7 +88,7 @@ BOMBA		    NOP
 		    RETURN                  ;RETURNA
                                                 
 
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ CONFIGURACION DE PUERTOS PARA ENTRADAS Y/O SALIDAS DEL PIC ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ CONFIGURACION DE PUERTOS PARA ENTRADAS Y/O SALIDAS DEL PIC Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬
 				;1 = INPUT    0 = OUTPUT CADA UNO REPRESENTA UNA PATITA DE CADA PUERTO
 INICIO		    NOP                    
 		    CLRF    STATUS          
@@ -107,7 +107,7 @@ INICIO		    NOP
 		    MOVLW   b'11000111'	                       
 		    MOVWF   ADCON1	                               
 		    BCF	    STATUS,5                               		
-;¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬ inicio del programa ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬       
+;Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬ inicio del programa Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬Â¬       
 		    CLRF    PB               ;LIMPIAR PUERTO B
 		    MOVLW   d'0'             ;CARGAR W CON 0
 		    MOVWF   PB               ;PASAR W A PUERTO B                       
